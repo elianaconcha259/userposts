@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">UserPostApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="error">An error happened</string>
+    <string name="retry">Retry</string>
+    <string name="show_posts">Ver Publicaciones</string>
+    <string name="error_msg_network">Not Internet Connection</string>
+    <string name="error_msg_database">Something went wrong</string>
+    <string name="search_hint">Search users</string>
+    <string name="post">Publicaciones:</string>
+</resources>

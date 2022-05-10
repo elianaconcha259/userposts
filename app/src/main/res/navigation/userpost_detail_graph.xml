@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/product_detail_graph"
+    app:startDestination="@id/userDetailFragment">
+
+    <fragment
+        android:id="@+id/userDetailFragment"
+        android:name="com.example.userpostapp.presentation.ui.userpost.detail.UserPostDetailFragment"
+        tools:layout="@layout/fragment_userpostdetail"/>
+
+</navigation>
