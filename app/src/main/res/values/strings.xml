@@ -9,4 +9,5 @@
     <string name="error_msg_database">Something went wrong</string>
     <string name="search_hint">Search users</string>
     <string name="post">Publicaciones:</string>
+    <string name="list_empty">List is empty</string>
 </resources>

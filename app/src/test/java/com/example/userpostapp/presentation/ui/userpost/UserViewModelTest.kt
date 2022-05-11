@@ -2,6 +2,7 @@ package com.example.userpostapp.presentation.ui.userpost
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.userpostapp.domain.model.UserModel
+import com.example.userpostapp.domain.usecase.GetUsersByQueryUseCase
 import com.example.userpostapp.domain.usecase.GetUsersUseCase
 import com.example.userpostapp.util.common.AsyncResult
 import com.example.userpostapp.util.common.Errors
@@ -30,6 +31,9 @@ class UserViewModelTest {
     @MockK
     lateinit var getUsersUseCase: GetUsersUseCase
 
+    @MockK
+    lateinit var getUsersByQueryUseCase: GetUsersByQueryUseCase
+
     @InjectMockKs
     private lateinit var viewModel: UserViewModel
 
@@ -52,6 +56,22 @@ class UserViewModelTest {
 
             // Then
             coVerify { getUsersUseCase() }
+        }
+
+    @Test
+    fun `getUsersByQuery should call getUsersByQueryUseCase()`() =
+        runBlockingTest {
+            // Given
+            val data = listOf(mockk<UserModel>())
+            val expectedResult = AsyncResult.success(data)
+
+            coEvery { getUsersByQueryUseCase("test") } returns expectedResult
+
+            // When
+            viewModel.getUsersByQuery("test")
+
+            // Then
+            coVerify { getUsersByQueryUseCase("test") }
         }
 
     @Test

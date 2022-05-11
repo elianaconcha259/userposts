@@ -81,9 +81,9 @@ class UserPostDetailFragment : Fragment() {
     }
 
     private fun showDetail(user: UserModel){
-        binding.tvNameUser.setText(user.name)
-        binding.tvEmailUser.setText(user.email)
-        binding.tvPhoneUser.setText(user.phone)
+        binding.tvName.setText(user.name)
+        binding.tvEmail.setText(user.email)
+        binding.tvPhone.setText(user.phone)
     }
 
     private fun showLoader() {
@@ -104,11 +104,12 @@ class UserPostDetailFragment : Fragment() {
     }
 
     private fun showError(error: Errors) {
+        hideLoader()
         val message = errorMessage.getMessage(error)
         binding.vError.root.visibility = View.VISIBLE
         binding.vError.tvErrorMessage.text = message
         binding.vError.btnErrorRetry.setOnClickListener {
-            loadUserDetail()
+            loadPosts()
         }
     }
 

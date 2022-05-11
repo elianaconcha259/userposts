@@ -14,19 +14,36 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="user_detail_title">
+    <style name="user_title">
         <item name="android:layout_marginBottom">8dp</item>
-        <item name="android:paddingLeft">8dp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">20sp</item>
+        <item name="android:paddingLeft">@dimen/dimen_8dp</item>
+        <item name="android:textAppearance">@android:style/TextAppearance.Large</item>
+        <item name="android:textColor">@color/design_default_color_primary</item>
+    </style>
+
+    <style name="user_description">
+        <item name="android:layout_marginBottom">8dp</item>>
+        <item name="android:textStyle">normal</item>
+        <item name="android:paddingLeft">@dimen/dimen_8dp</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:textAppearance">@android:style/TextAppearance.Large</item>
     </style>
 
-    <style name="user_detail_description">
+    <style name="post_title">
         <item name="android:layout_marginBottom">8dp</item>
-        <item name="android:paddingLeft">8dp</item>
-        <item name="android:textStyle">normal</item>
+        <item name="android:textStyle">bold</item>
         <item name="android:textSize">16sp</item>
+        <item name="android:paddingLeft">@dimen/dimen_8dp</item>
+        <item name="android:textAppearance">@android:style/TextAppearance.Large</item>
+    </style>
+
+    <style name="post_description">
+        <item name="android:layout_marginBottom">8dp</item>>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:paddingLeft">@dimen/dimen_8dp</item>
         <item name="android:textAppearance">@android:style/TextAppearance.Large</item>
     </style>
 </resources>

@@ -17,10 +17,14 @@ import org.junit.runner.manipulation.Ordering
 import java.io.IOException
 import junit.framework.Assert.assertEquals
 import android.content.Context
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+import com.example.userpostapp.data.datasource.local.db.entity.PostEntity
 
 @ExperimentalCoroutinesApi
 @RunWith(AndroidJUnit4::class)
-class UserDaoTest {
+class PostDaoTest {
 
     companion object{
         private const val FIRST_POSITION = 0
@@ -29,7 +33,7 @@ class UserDaoTest {
     @get:Rule
     var instantTask = InstantTaskExecutorRule()
 
-    private lateinit var userDao: UserDao
+    private lateinit var postDao: PostDao
     private lateinit var db: AppDatabase
 
     @Before
@@ -38,32 +42,16 @@ class UserDaoTest {
         db = Room.inMemoryDatabaseBuilder(
             context, AppDatabase::class.java
         ).allowMainThreadQueries().build()
-        userDao = db.userDao()
+        postDao = db.postDao()
     }
 
     @Test
     @Throws(Exception::class)
-    fun `verify insert and getAll using a user`() = runBlockingTest {
-        val userList = listOf(UserEntity(1, "test", "email@mail.com","12345"))
-        userDao.insert(userList)
-        val userListFromDB = userDao.getAll()
-        assertEquals(userListFromDB[FIRST_POSITION], userList[FIRST_POSITION])
-    }
-
-    @Test
-    @Throws(Exception::class)
-    fun `verify getUserById using a user`() = runBlockingTest {
-        val user = UserEntity(1, "test", "email@mail.com","12345")
-        val userFromDB = userDao.getUserById(1)
-        assertEquals(userFromDB, user)
-    }
-
-    @Test
-    @Throws(Exception::class)
-    fun `verify getUserByQuery using a user`() = runBlockingTest {
-        val userList = listOf(UserEntity(1, "test", "email@mail.com","12345"))
-        val userListFromDB = userDao.getUserByQuery("test")
-        assertEquals(userListFromDB, userList[FIRST_POSITION])
+    fun `verify insert and getPostsByIdUser using a post`() = runBlockingTest {
+        val postList = listOf(PostEntity(1, 1, "title", "body"))
+        postDao.insert(postList)
+        val postsListFromDB = postDao.getPostsByIdUser(1)
+        assertEquals(postsListFromDB[FIRST_POSITION], postList[FIRST_POSITION])
     }
 
     @After

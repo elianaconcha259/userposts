@@ -33,12 +33,12 @@ class UserRepositoryImpl @Inject constructor(
             usersFromLocal = localDataSource.getUsers().fromListUserEntityToListUserModel()
         }
         AsyncResult.success(usersFromLocal)
-    } catch (e: IOException) {
-        logger.warning(e.message)
-        AsyncResult.error(Errors.NetworkError)
-    } catch (e: Exception) {
+    }catch (e: Exception) {
         logger.warning(e.message)
         AsyncResult.error(Errors.UnknownError)
+    }catch (e: IOException) {
+        logger.warning(e.message)
+        AsyncResult.error(Errors.NetworkError)
     }
 
     override suspend fun getUsersByQuery(query: String): AsyncResult<List<UserModel>> = try{

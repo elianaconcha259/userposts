@@ -2,6 +2,7 @@ package com.example.userpostapp.presentation.ui.userpost
 
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -71,6 +72,9 @@ class UserFragment : Fragment(), SearchView.OnQueryTextListener {
 
     private fun setDataInList(data: List<UserModel>) {
         adapter.submitList(data)
+        if (data.isNullOrEmpty()){
+            Toast.makeText(activity, getString(R.string.list_empty), Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun setupRecycler() {

@@ -1,49 +1,83 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="@dimen/dimen_20dp"
-    xmlns:tools="http://schemas.android.com/tools">
-
-
-    <TextView
-        android:id="@+id/tvNameUser"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/user_detail_title"
-        android:paddingTop="@dimen/dimen_15dp"
-        android:text="Titulo"
-        />
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/tvEmailUser"
-        android:layout_width="match_parent"
+        android:id="@+id/tvName"
+        style="@style/user_title"
+        android:layout_width="@dimen/dimen_0dp"
         android:layout_height="wrap_content"
-        style="@style/user_detail_description"
-        android:text="Titulo"/>
+        android:layout_marginStart="@dimen/dimen_8dp"
+        android:layout_marginLeft="@dimen/dimen_8dp"
+        android:layout_marginTop="@dimen/dimen_16dp"
+        android:layout_marginEnd="@dimen/dimen_8dp"
+        android:layout_marginRight="@dimen/dimen_8dp"
+        android:gravity="start"
+        android:text="prueba nombre"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
-        android:id="@+id/tvPhoneUser"
-        android:layout_width="match_parent"
+        android:id="@+id/tvPhone"
+        style="@style/user_description"
+        android:layout_width="@dimen/dimen_0dp"
         android:layout_height="wrap_content"
-        style="@style/user_detail_description"
-        android:text="Titulo"/>
+        android:layout_marginStart="@dimen/dimen_8dp"
+        android:layout_marginLeft="@dimen/dimen_8dp"
+        android:layout_marginTop="@dimen/dimen_16dp"
+        android:layout_marginEnd="@dimen/dimen_8dp"
+        android:layout_marginRight="@dimen/dimen_8dp"
+        android:gravity="start"
+        android:drawableLeft="@drawable/ic_telephone"
+        android:drawablePadding="@dimen/dimen_8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="prueba telefono"
+        app:layout_constraintTop_toBottomOf="@+id/tvName"/>
 
     <TextView
+        android:id="@+id/tvEmail"
+        android:layout_width="@dimen/dimen_0dp"
+        style="@style/user_description"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_8dp"
+        android:layout_marginLeft="@dimen/dimen_8dp"
+        android:layout_marginTop="@dimen/dimen_16dp"
+        android:layout_marginEnd="@dimen/dimen_8dp"
+        android:layout_marginRight="@dimen/dimen_8dp"
+        android:gravity="start"
+        android:drawableLeft="@drawable/ic_email"
+        android:drawablePadding="@dimen/dimen_8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="prueba email"
+        app:layout_constraintTop_toBottomOf="@+id/tvPhone"/>
+
+    <TextView
+        android:id="@+id/tvPosts"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/user_detail_title"
-        android:layout_marginTop="@dimen/dimen_15dp"
-        android:text="@string/post"/>
+        style="@style/user_title"
+        android:layout_marginStart="@dimen/dimen_8dp"
+        android:layout_marginLeft="@dimen/dimen_8dp"
+        android:layout_marginTop="@dimen/dimen_16dp"
+        android:layout_marginEnd="@dimen/dimen_8dp"
+        android:layout_marginRight="@dimen/dimen_8dp"
+        android:text="@string/post"
+        app:layout_constraintTop_toBottomOf="@+id/tvEmail"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvUserPostList"
         android:layout_width="@dimen/dimen_0dp"
-        android:layout_height="@dimen/dimen_0dp"
+        android:layout_height="wrap_content"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:spanCount="2"
+        app:layout_constraintTop_toBottomOf="@+id/tvPosts"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         tools:listitem="@layout/item_user_post" />
 
     <include
@@ -66,4 +100,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

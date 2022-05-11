@@ -80,8 +80,7 @@ class UserRepositoryImplTest {
     fun `getUsers() should return error with UnknownError when there is error`() =
         runBlockingTest {
             // Given
-            val expectedResult: AsyncResult<List<UserDTO>> =
-                AsyncResult.error(Errors.UnknownError)
+            val expectedResult: AsyncResult<List<UserDTO>> = AsyncResult.error(Errors.UnknownError)
 
             coEvery { remoteDataSource.getUsers() }.throws(Exception())
 
@@ -96,12 +95,60 @@ class UserRepositoryImplTest {
     fun `getUsers() should return error with NetworkError when there is error`() =
         runBlockingTest {
             // Given
-            val expectedResult: AsyncResult<List<String>> = AsyncResult.error(Errors.NetworkError)
+            val expectedResult: AsyncResult<List<String>> = AsyncResult.error(Errors.UnknownError)
 
             coEvery { remoteDataSource.getUsers() }.throws(IOException())
 
             // When
             val result = userRepositoryImpl.getUsers()
+
+            // Then
+            assertEquals(expectedResult, result)
+        }
+
+    @Test
+    fun `getUsersByQuery() should call localDataSource getUserByQuery()`() =
+        runBlockingTest {
+            // Given
+            val dbResult = listOf<UserEntity>()
+            val modelResult = listOf<UserModel>()
+
+           coEvery { localDataSource.getUserByQuery("test").fromListUserEntityToListUserModel() } returns modelResult
+
+            // When
+            userRepositoryImpl.getUsersByQuery("test")
+
+            // Then
+            coVerify { localDataSource.getUserByQuery("test") }
+        }
+
+    @Test
+    fun `getUsersByQuery() should return success when is success`() =
+        runBlockingTest {
+            // Given
+            val resultFromDB = listOf<UserEntity>()
+            val expectedResult = AsyncResult.success(resultFromDB)
+
+            coEvery { localDataSource.getUserByQuery("test") } returns resultFromDB
+
+            // When
+            val result = userRepositoryImpl.getUsersByQuery("test")
+
+            // Then
+            assertEquals(expectedResult, result)
+        }
+
+    @Test
+    fun `getUsersByQuery() should return error with UnknownError when there is error`() =
+        runBlockingTest {
+            // Given
+            val expectedResult: AsyncResult<List<UserEntity>> =
+                AsyncResult.error(Errors.UnknownError)
+
+            coEvery { localDataSource.getUserByQuery("test") }.throws(Exception())
+
+            // When
+            val result = userRepositoryImpl.getUsersByQuery("test")
 
             // Then
             assertEquals(expectedResult, result)

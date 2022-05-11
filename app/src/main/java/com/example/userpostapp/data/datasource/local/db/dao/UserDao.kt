@@ -18,6 +18,6 @@ interface UserDao {
     @Query("SELECT * FROM user WHERE id = :id")
     suspend fun getUserById(id: Int): UserEntity
 
-    @Query("SELECT * FROM user WHERE name LIKE :query")
+    @Query("SELECT * FROM user WHERE name LIKE '%' || :query || '%'")
     suspend fun getUserByQuery(query: String): List<UserEntity>
 }
